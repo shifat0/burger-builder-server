@@ -3,6 +3,8 @@ dotenv.config();
 const app = require("./app");
 const mongoose = require("mongoose");
 
+global.__basedir = __dirname;
+
 mongoose
   .set("strictQuery", false)
   .connect(process.env.MONGODB_SERVER)
