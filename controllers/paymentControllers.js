@@ -42,12 +42,12 @@ module.exports.initPayment = async (req, res) => {
 
   // Set the urls
   payment.setUrls({
-    // success:
-    // "https://e-commerce-server-unig.onrender.com/api/v1/payment/success",
-    success: "http://localhost:5000/success",
+    success:
+      "https://burger-builder-server-3ad9.onrender.com/api/v1/payment/success",
+    // success: "http://localhost:5000/success",
     fail: "yoursite.com/fail", // If payment failed
     cancel: "yoursite.com/cancel", // If user cancel payment
-    // ipn: "https://e-commerce-server-unig.onrender.com/api/v1/payment/ipn", // SSLCommerz will send http post request in this link
+    ipn: "https://burger-builder-server-3ad9.onrender.com/api/v1/payment/ipn",
   });
 
   // Set order details

@@ -8,7 +8,7 @@ const paymentRouter = require("./routers/paymentRouter");
 
 app.use(cors());
 app.use(express.json());
-app.use("/", (req, res) => res.send("Server is running").sendStatus(200));
+app.use("/", (_, res) => res.status(200).send("Server is running"));
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/order", orderRouter);
 app.use("/api/v1/cart", cartRouter);
