@@ -19,8 +19,8 @@ const orderSchema = Schema({
   price: Number,
   status: {
     type: String,
-    default: "Pending",
-    enum: ["Pending", "Paid"],
+    default: "Cash on delivery",
+    enum: ["Cash on delivery", "Paid"],
   },
   sessionKey: String,
   orderTime: { type: Date, default: Date.now },

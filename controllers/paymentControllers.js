@@ -95,7 +95,7 @@ module.exports.initPayment = async (req, res) => {
   response = await payment.paymentInit();
   // console.log(response);
   const order = new Order({
-    user: userId,
+    user: user,
     transaction_id: tran_id,
     customer: customer,
     price: price,
