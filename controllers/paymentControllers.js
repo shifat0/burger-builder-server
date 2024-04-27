@@ -10,20 +10,20 @@ const path = require("path");
 // Create an Order
 
 module.exports.ipn = async (req, res) => {
-  console.log(req.body);
   try {
-    const payment = new Payment(req.body);
-    const tran_id = payment["tran_id"];
-    if (payment["status"] === "VALID") {
-      const order = await Order.updateOne(
-        { transaction_id: tran_id },
-        { status: "Paid" }
-      );
-    } else {
-      await CartItem.deleteOne({ user: req.user._id, transaction_id: tran_id });
-    }
-    await payment.save();
-    return res.status(200).send("IPN");
+    console.log(req.body);
+    // const payment = new Payment(req.body);
+    // const tran_id = payment["tran_id"];
+    // if (payment["status"] === "VALID") {
+    //   const order = await Order.updateOne(
+    //     { transaction_id: tran_id },
+    //     { status: "Paid" }
+    //   );
+    // } else {
+    //   await CartItem.deleteOne({ transaction_id: tran_id });
+    // }
+    // await payment.save();
+    // return res.status(200).send("IPN");
   } catch (err) {
     console.log("ipn error", err);
   }
@@ -34,7 +34,7 @@ module.exports.initPayment = async (req, res) => {
   const cart = await CartItem.findOne({ user: userId });
 
   const { customer, user, price, ingredients } = cart;
-  console.log(price);
+  // console.log(price);
 
   const tran_id =
     "_" + Math.random().toString(36).substr(2, 9) + new Date().getTime();
@@ -114,6 +114,7 @@ module.exports.initPayment = async (req, res) => {
 
 module.exports.paymentSuccess = async (req, res) => {
   try {
+    console.log(__basedir);
     res.sendFile(path.join(__basedir + "/public/success.html"));
   } catch (error) {
     console.log("success error", error);
