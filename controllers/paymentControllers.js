@@ -47,12 +47,11 @@ module.exports.initPayment = async (req, res) => {
 
   // Set the urls
   payment.setUrls({
-    success:
-      "https://burger-builder-server-3ad9.onrender.com/api/v1/payment/success",
+    success: "https://burger-builder-server.vercel.app/api/v1/payment/success",
     // success: "http://localhost:5000/success",
     fail: "yoursite.com/fail", // If payment failed
     cancel: "yoursite.com/cancel", // If user cancel payment
-    ipn: "https://burger-builder-server-3ad9.onrender.com/api/v1/payment/ipn",
+    ipn: "https://burger-builder-server.vercel.app/api/v1/payment/ipn",
   });
 
   // Set order details
