@@ -20,7 +20,7 @@ module.exports.createCartItem = async (req, res) => {
     customer: customer,
   });
   const result = await cartItem.save();
-  console.log(result);
+  // console.log(result);
   res.status(201).send({
     message: "Added to cart successfully!",
     data: result,
