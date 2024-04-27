@@ -7,6 +7,7 @@ const cartRouter = require("./routers/cartRouter");
 const paymentRouter = require("./routers/paymentRouter");
 
 app.use(cors());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.get("/", (_, res) => res.status(200).send("Server is running"));
 app.use("/api/v1/user", userRouter);
