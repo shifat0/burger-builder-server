@@ -15,7 +15,7 @@ module.exports.ipn = async (req, res) => {
     const payment = new Payment(req.body);
     const tran_id = payment["tran_id"];
     if (payment["status"] === "VALID") {
-      const order = await Order.updateOne(
+      const order = await Order.findByIdAndUpdate(
         { transaction_id: tran_id },
         { status: "Paid" }
       );
