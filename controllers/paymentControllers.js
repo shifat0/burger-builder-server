@@ -11,18 +11,19 @@ const path = require("path");
 
 module.exports.ipn = async (req, res) => {
   try {
-    console.log(req.body);
-    // const payment = new Payment(req.body);
-    // const tran_id = payment["tran_id"];
-    // if (payment["status"] === "VALID") {
-    //   const order = await Order.updateOne(
-    //     { transaction_id: tran_id },
-    //     { status: "Paid" }
-    //   );
-    // } else {
-    //   await CartItem.deleteOne({ transaction_id: tran_id });
-    // }
-    // await payment.save();
+    // console.log(req.body);
+    const payment = new Payment(req.body);
+    const tran_id = payment["tran_id"];
+    if (payment["status"] === "VALID") {
+      const order = await Order.updateOne(
+        { transaction_id: tran_id },
+        { status: "Paid" }
+      );
+      console.log(order);
+    } else {
+      await CartItem.deleteOne({ transaction_id: tran_id });
+    }
+    await payment.save();
     // return res.status(200).send("IPN");
   } catch (err) {
     console.log("ipn error", err);
