@@ -115,7 +115,8 @@ module.exports.initPayment = async (req, res) => {
 module.exports.paymentSuccess = async (req, res) => {
   try {
     console.log(req.body);
-    res.sendFile(path.resolve(__basedir + "/public/success.html"));
+    res.redirect("http://localhost:3000/orders");
+    // res.sendFile(path.resolve(__basedir + "/public/success.html"));
   } catch (error) {
     console.log("success error", error);
   }
