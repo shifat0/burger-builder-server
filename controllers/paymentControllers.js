@@ -15,13 +15,12 @@ module.exports.ipn = async (req, res) => {
     const payment = new Payment(req.body);
     const tran_id = payment["tran_id"];
     if (payment["status"] === "VALID") {
-      const order = await Order.findByIdAndUpdate(
-        { transaction_id: tran_id },
-        { status: "Paid" }
-      );
+      const order = await Order.findOne({ transaction_id: req.body.tran_id });
+      if (order)
+        await Order.updateOne({ transaction_id: tran_id }, { status: "Paid" });
       console.log(order);
     } else {
-      await CartItem.deleteOne({ transaction_id: tran_id });
+      await CartItem.deleteOne({ user: req.user._id });
     }
     await payment.save();
     // return res.status(200).send("IPN");
